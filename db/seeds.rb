@@ -7,3 +7,21 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# generate 20 users
+Restaurant.destroy_all
+puts 'destroy old database'
+
+puts 'create new database'
+
+(1..20).each do
+  restaurant = Restaurant.create!(
+    # each user is assigned an id from 1-20
+    name: Faker::Restaurant.name ,
+    address: Faker::Address.full_address,
+    phone_number: Faker::PhoneNumber.phone_number,
+    category: Restaurant::CATEGORY.sample
+    # correspond à ["chinese", "italian", "japanese", "french", "belgian"].sample
+  )
+  puts "Created #{restaurant.name}"
+end
